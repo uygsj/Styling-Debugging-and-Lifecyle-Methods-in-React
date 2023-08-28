@@ -10,14 +10,21 @@ import Wrapper from '../Helpers/Wrapper';
 
 
 const AddUser =(props)=>{
+
+    //const nameInputRef = useRef();
+    //const ageInputRef = useRef();
+
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredAge,setEnteredAge] = useState('');
+    const [enteredCollegeName, setEnteredCollegeName] = useState('');
     const [error,setError] = useState();
     
 
 
     const addUserHandler =(event) => {
         event.preventDefault();
+        //const enteredName = nameInputRef.current.value
+        //const enteredUserAge = ageInputRef.current.value
         if(enteredUsername.trim().length === 0 || enteredAge.trim().length === 0){
             setError({
                 title: 'Empty input',
@@ -32,7 +39,9 @@ const AddUser =(props)=>{
               })
               return;
         }
-        props.onAddUser(enteredUsername, enteredAge)
+        props.onAddUser(enteredUsername, enteredAge,enteredCollegeName)
+        //nameInputRef.current.value = '';
+        //ageInputRef.current.value = '';
         setEnteredUsername('');
         setEnteredAge('');
             
@@ -43,6 +52,10 @@ const AddUser =(props)=>{
      }
      const ageChangeHandler =(event) => {
         setEnteredAge(event.target.value);
+     }
+
+     const collegeNameChangeHandler =(event)=>{
+        setEnteredCollegeName(event.target.value)
      }
      const errorHandler = () => {
         setError(null);
@@ -57,9 +70,32 @@ const AddUser =(props)=>{
         <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" value={enteredUsername} onChange={usernameChangeHandler}/>
+        <input 
+        id="username" 
+        type="text" 
+        value={enteredUsername} 
+        onChange={usernameChangeHandler}
+        //ref={nameInputRef}
+        />
+       
+
         <label htmlFor="age">Age(years)</label>
-        <input id="age" type="number" value={enteredAge} onChange={ageChangeHandler}/>
+        <input id="age" 
+        type="number" 
+        value={enteredAge} 
+        onChange={ageChangeHandler}
+        //ref={ageInputRef}
+        />
+
+        <label htmlFor="college Name">college Name</label>
+        <input id="collegename" 
+        type="text" 
+        value={enteredCollegeName} 
+        onChange={collegeNameChangeHandler}
+        //ref={ageInputRef}
+        />
+       
+
         <Button type="submit">Add User</ Button>
         </form>
       
