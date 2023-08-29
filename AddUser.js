@@ -44,7 +44,7 @@ const AddUser =(props)=>{
         //ageInputRef.current.value = '';
         setEnteredUsername('');
         setEnteredAge('');
-            
+        setEnteredCollegeName('');            
      }
      const usernameChangeHandler = (event) => {
         setEnteredUsername(event.target.value)
